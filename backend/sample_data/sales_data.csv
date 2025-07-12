@@ -1,0 +1,21 @@
+date,customer_id,product_name,quantity,unit_price,total_amount,region,category
+2023-01-15,1001,Laptop Pro,2,1200.00,2400.00,North,Electronics
+2023-01-20,1002,Wireless Mouse,5,25.00,125.00,South,Accessories
+2023-01-25,1003,Monitor 24",1,300.00,300.00,East,Electronics
+2023-02-01,1004,Keyboard,3,80.00,240.00,West,Accessories
+2023-02-10,1005,Tablet,1,500.00,500.00,North,Electronics
+2023-02-15,1006,Headphones,4,75.00,300.00,South,Accessories
+2023-02-20,1007,Desktop PC,1,1500.00,1500.00,East,Electronics
+2023-03-01,1008,Webcam,2,60.00,120.00,West,Accessories
+2023-03-10,1009,Printer,1,400.00,400.00,North,Electronics
+2023-03-15,1010,USB Drive,10,15.00,150.00,South,Accessories
+2023-03-20,1011,Smartphone,1,800.00,800.00,East,Electronics
+2023-04-01,1012,Speaker Set,2,120.00,240.00,West,Accessories
+2023-04-10,1013,Gaming Laptop,1,2000.00,2000.00,North,Electronics
+2023-04-15,1014,Microphone,3,50.00,150.00,South,Accessories
+2023-04-20,1015,Server,1,5000.00,5000.00,East,Electronics
+2023-05-01,1016,Network Cable,20,5.00,100.00,West,Accessories
+2023-05-10,1017,Workstation,1,3000.00,3000.00,North,Electronics
+2023-05-15,1018,Wireless Keyboard,2,90.00,180.00,South,Accessories
+2023-05-20,1019,All-in-One PC,1,1200.00,1200.00,East,Electronics
+2023-06-01,1020,Bluetooth Speaker,4,80.00,320.00,West,Accessories 
