@@ -55,17 +55,17 @@ class DataService:
                 "name": col,
                 "type": str(df[col].dtype),
                 "description": self._infer_column_description(col, df[col]),
-                "unique_values": df[col].nunique(),
-                "null_count": df[col].isnull().sum(),
-                "sample_values": df[col].dropna().head(3).tolist()
+                "unique_values": int(df[col].nunique()),  # Convert to native Python int
+                "null_count": int(df[col].isnull().sum()),  # Convert to native Python int
+                "sample_values": df[col].dropna().head(3).astype(str).tolist()  # Convert to strings for JSON serialization
             }
             columns.append(col_info)
         
         return {
             "dataset_name": dataset_name,
             "columns": columns,
-            "total_rows": len(df),
-            "total_columns": len(df.columns)
+            "total_rows": int(len(df)),  # Convert to native Python int
+            "total_columns": int(len(df.columns))  # Convert to native Python int
         }
     
     def _infer_column_description(self, column_name: str, series: pd.Series) -> str:
@@ -119,8 +119,22 @@ class DataService:
     def _get_sample_data(self, df: pd.DataFrame, num_rows: int = 5) -> Dict[str, Any]:
         """Get sample data from DataFrame"""
         sample_df = df.head(num_rows)
+        
+        # Convert to JSON-serializable format
+        rows = []
+        for _, row in sample_df.iterrows():
+            row_dict = {}
+            for col, value in row.items():
+                if pd.isna(value):
+                    row_dict[col] = None
+                elif isinstance(value, (int, float)):
+                    row_dict[col] = float(value) if isinstance(value, float) else int(value)
+                else:
+                    row_dict[col] = str(value)
+            rows.append(row_dict)
+        
         return {
-            "rows": sample_df.to_dict('records'),
+            "rows": rows,
             "columns": df.columns.tolist()
         }
     
@@ -133,7 +147,17 @@ class DataService:
             result = con.execute(sql).fetchdf()
             
             # Convert to JSON-serializable format
-            data = result.to_dict('records')
+            data = []
+            for _, row in result.iterrows():
+                row_dict = {}
+                for col, value in row.items():
+                    if pd.isna(value):
+                        row_dict[col] = None
+                    elif isinstance(value, (int, float)):
+                        row_dict[col] = float(value) if isinstance(value, float) else int(value)
+                    else:
+                        row_dict[col] = str(value)
+                data.append(row_dict)
             
             con.close()
             
@@ -168,11 +192,37 @@ class DataService:
             
             con.close()
             
+            # Convert schema to JSON-serializable format
+            schema_data = []
+            for _, row in schema.iterrows():
+                row_dict = {}
+                for col, value in row.items():
+                    if pd.isna(value):
+                        row_dict[col] = None
+                    elif isinstance(value, (int, float)):
+                        row_dict[col] = float(value) if isinstance(value, float) else int(value)
+                    else:
+                        row_dict[col] = str(value)
+                schema_data.append(row_dict)
+            
+            # Convert sample data to JSON-serializable format
+            sample_data = []
+            for _, row in sample.iterrows():
+                row_dict = {}
+                for col, value in row.items():
+                    if pd.isna(value):
+                        row_dict[col] = None
+                    elif isinstance(value, (int, float)):
+                        row_dict[col] = float(value) if isinstance(value, float) else int(value)
+                    else:
+                        row_dict[col] = str(value)
+                sample_data.append(row_dict)
+            
             return {
                 "success": True,
-                "schema": schema.to_dict('records'),
-                "row_count": count,
-                "sample_data": sample.to_dict('records')
+                "schema": schema_data,
+                "row_count": int(count),
+                "sample_data": sample_data
             }
             
         except Exception as e:
