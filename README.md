@@ -2,7 +2,7 @@
 
 An AI-powered business analytics dashboard that enables users to query and visualize data using natural language. Built with React, FastAPI, LangChain, and Groq.
 
-## 🚀 Features
+## Features
 
 ### Frontend
 - **Natural Language Queries**: Ask questions in plain English like "What's our churn this month?"
@@ -17,7 +17,7 @@ An AI-powered business analytics dashboard that enables users to query and visua
 - **Dashboard Builder**: Create custom dashboards with drag-and-drop widgets
 - **Query History**: Track and retrieve past queries
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 InsightIQ/
@@ -36,7 +36,7 @@ InsightIQ/
 └── README.md
 ```
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 - **React 18** - UI library
@@ -54,7 +54,7 @@ InsightIQ/
 - **DuckDB** - Analytical database
 - **SQLAlchemy** - ORM and database toolkit
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Node.js (v16+)
@@ -114,21 +114,7 @@ InsightIQ/
 
 6. **API Documentation:** `http://localhost:8000/docs`
 
-## 📚 API Endpoints
-
-### Queries
-- `POST /api/v1/query` - Process natural language query
-- `GET /api/v1/query/history` - Get query history
-
-### Upload
-- `POST /api/v1/upload/csv` - Upload and process CSV file
-- `GET /api/v1/datasets` - List all datasets
-
-### Dashboards
-- `GET /api/v1/dashboards` - List all dashboards
-- `POST /api/v1/dashboards` - Create new dashboard
-
-## 🔍 Usage Examples
+## Usage Examples
 
 ### 1. Upload Data
 Upload a CSV file through the web interface or API:
@@ -147,42 +133,7 @@ Use natural language to query your data:
 ### 3. Create Dashboards
 Build custom dashboards with your insights and share them with your team.
 
-## 🐳 Docker Deployment
 
-### Backend
-```bash
-cd backend
-docker build -t insightiq-backend .
-docker run -p 8000:8000 insightiq-backend
-```
-
-### Frontend
-```bash
-cd frontend
-docker build -t insightiq-frontend .
-docker run -p 5173:5173 insightiq-frontend
-```
-
-## 🔧 Development
-
-### Frontend Commands
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run lint` - Run ESLint
-
-### Backend Commands
-- `python start.py` - Start development server
-- `pytest` - Run tests
-- `black .` - Format code
-
-## 📄 License
+## License
 
 This project is licensed under the MIT License.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
